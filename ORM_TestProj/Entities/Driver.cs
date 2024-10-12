@@ -2,26 +2,17 @@
 
 namespace ORM_TestProj.Entities;
 
-public sealed partial class Driver
+public partial class Driver
 {
-    public int Id { get; set; }
-
-    [MaxLength(50)]
+    // Domains
+    public Guid Id { get; set; }
     public string FirstName { get; set; } = null!;
-
-    [MaxLength(50)]
     public string LastName { get; set; } = null!;
-
-    [MaxLength(50)]
     public string Surname { get; set; } = null!;
-
-    [MaxLength(50)]
-    public string PhoneNumber { get; set; }
-
-    [MaxLength(50)]
-    public string? DrivingLicense { get; set; }
-
-    public DrivingLicense? DrivingLicenseNavigation { get; set; }
-
-    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public string PhoneNumber { get; set; } = null!;
+    public string DrivingLicenseId { get; set; } = null!;
+    
+    // Navigation
+    public virtual DrivingLicense DrivingLicenseNavigation { get; set; } = null!;
+    public virtual ICollection<Order> OrdersNavigation{ get; set; } = new List<Order>();
 }

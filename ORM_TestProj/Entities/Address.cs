@@ -4,24 +4,14 @@ namespace ORM_TestProj.Entities;
 
 public partial class Address
 {
-    public int Id { get; set; }
-
-    [MaxLength(50)]
+    // Domains
+    public Guid Id { get; set; }
     public string Province { get; set; } = null!;
-
-    [MaxLength(50)]
-    public string City { get; set; } = null!;
-
-    [MaxLength(50)]
+    public string Settlement { get; set; } = null!;
     public string Street { get; set; } = null!;
-
-    [MaxLength(50)]
-    public string Number { get; set; } = null!;
-
-    [MaxLength(50)]
-    public string Organization { get; set; } = null!;
-
-    public virtual ICollection<Order> OrderLoadingAddressNavigations { get; set; } = new List<Order>();
-
-    public virtual ICollection<Order> OrderUnloadingAddressNavigations { get; set; } = new List<Order>();
+    public string StreetNumber { get; set; } = null!;
+    public string CompanyName { get; set; } = null!;
+    
+    // Navigation
+    public virtual ICollection<OrderAddress> OrderAddressesNavigation { get; set; } = new List<OrderAddress>();
 }

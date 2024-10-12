@@ -4,13 +4,11 @@ namespace ORM_TestProj.Entities;
 
 public partial class DrivingLicense
 {
-    [MaxLength(50)]
-    public string LicenseNumber { get; set; } = null!;
-
-    [MaxLength(50)]
+    // Domains
+    public string DrivingLicenceId { get; set; } = null!;
     public string LicenseIssuer { get; set; } = null!;
-
     public DateOnly LicenseIssuingDate { get; set; }
 
-    public virtual ICollection<Driver> Drivers { get; set; } = new List<Driver>();
+    //Navigation
+    public virtual Driver DriverNavigation { get; set; } = null!;
 }
