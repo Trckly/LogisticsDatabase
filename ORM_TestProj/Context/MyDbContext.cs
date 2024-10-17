@@ -31,7 +31,7 @@ public partial class MyDbContext : DbContext
     {
         var configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
-            .AddJsonFile("config.json", optional: false, reloadOnChange: true)
+            .AddJsonFile("/Users/trckly/Documents/Databases/LogisticsDatabase/ORM_TestProj/config.json", optional: false, reloadOnChange: true)
             .Build();
             
         optionsBuilder.UseNpgsql(configuration.GetConnectionString("PostgreSQL"));
@@ -82,6 +82,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Logist>(entity =>
         {
+            entity.HasIndex(e => new { e.FirstName, e.LastName, e.Surname })
+                .IsUnique();
+            
             entity.Property(e => e.FirstName).HasMaxLength(50);
             entity.Property(e => e.LastName).HasMaxLength(50);
             entity.Property(e => e.Surname).HasMaxLength(50);
@@ -113,7 +116,7 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<Vehicle>(entity =>
         {
-            entity.Property(e => e.LicensePlate).HasMaxLength(8);
+            entity.Property(e => e.LicensePlate).HasMaxLength(8).IsFixedLength();
             entity.Property(e => e.Model).HasMaxLength(20);
         });
 
